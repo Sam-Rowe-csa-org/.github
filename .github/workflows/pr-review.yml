@@ -1,0 +1,19 @@
+name: Add Label after approval
+
+on:
+  pull_request_review:
+    branches: [ $default ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Label when approved
+        uses: pullreminders/label-when-approved-action@09b41ee798957cb258b29e12f7619bf18d229109
+        env:
+          APPROVALS: "1"
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ADD_LABEL: "approved"
